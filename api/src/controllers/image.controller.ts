@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import config from "../config/config";
 import { Images } from "../entities/image.entity";
 import logger from "../loggers/logger";
 import uploadService from "../services/upload.service";
@@ -16,7 +17,7 @@ class ImageController {
     const data = await uploadService.uploadSingleToCloudinary({
       file,
       opts: {
-        folder: "image",
+        folder: config.cloudFolder,
       },
     });
 

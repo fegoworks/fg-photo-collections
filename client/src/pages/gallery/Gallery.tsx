@@ -1,6 +1,6 @@
 import "./Gallery.css";
 
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useMemo, useState } from "react";
 import { Card, ImageModal } from "../../components";
 import { ImageState, useAppSelector } from "../../store";
 
@@ -17,20 +17,31 @@ const Gallery: FunctionComponent = () => {
 
   if (!images) return <div>loading</div>;
 
+  const orderedImages = useMemo(() => {
+    return [...images].sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+  }, [images]);
+
   return (
-    <div className="gallery">
-      {images.map((i) => (
-        <Card key={i.id} className={`image-container `}>
+    <div className="Gallery">
+      {orderedImages.map((image) => (
+        <Card key={image.id} className={`image-container `}>
           <div className="image-item">
             <div className="image">
               <img
-                src={i.image_url}
+                src={image.image_url}
                 alt={
-                  i?.image_caption ? i.image_caption.toLocaleLowerCase() : "img"
+                  image?.image_caption
+                    ? image.image_caption.toLocaleLowerCase()
+                    : "image"
                 }
-                onClick={() => setSelectedImage(i)}></img>
+                onClick={() => setSelectedImage(image)}></img>
             </div>
-            <div className="image-caption">{i?.image_caption || ""}</div>
+            <div className="image-caption">
+              {image?.image_caption || "Image"}
+            </div>
           </div>
         </Card>
       ))}

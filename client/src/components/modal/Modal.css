@@ -23,10 +23,10 @@
 
 .Modal .modal-content .close {
   position: absolute;
-  top: -15px;
+  font-family: fantasy;
+  top: -40px;
   right: -40px;
   font-size: 30px;
   color: #fff;
   cursor: pointer;
 }
-

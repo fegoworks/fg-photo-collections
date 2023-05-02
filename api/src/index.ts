@@ -6,7 +6,7 @@ import { NotFoundError } from "./utils/ApiError";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 import config from "./config/config";
 
-export const mainServer = () => {
+const mainServer = () => {
   const app: Application = express();
   const cors = require("cors");
   app.use(express.json());
@@ -35,3 +35,5 @@ export const mainServer = () => {
     console.log(`Server is running worker ${process.pid} on port ${port}`);
   });
 };
+
+mainServer()

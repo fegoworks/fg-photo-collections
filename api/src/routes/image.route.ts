@@ -11,6 +11,6 @@ let upload = multer({
 
 imageRoute.get("/", imageController.getImage);
 
-imageRoute.post("/", upload.single("image"), imageController.saveImage);
+imageRoute.post("/", upload.single("file"), imageController.saveImage);
 
 export default imageRoute;

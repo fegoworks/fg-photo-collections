@@ -10,6 +10,7 @@ import { asyncWrapper } from "../utils/AsyncWrapper";
 class ImageController {
   saveImage = asyncWrapper(async (req: Request, res: Response) => {
     const file = req.file;
+    const { caption } = req.body;
     if (!file) {
       throw new BadRequestError("Error: File is required");
     }
@@ -26,6 +27,7 @@ class ImageController {
     }
 
     image.image_url = data?.secure_url;
+    image.image_caption = caption;
     image.created_at = new Date();
     const savedImage = await image.save();
 
@@ -36,7 +38,7 @@ class ImageController {
     logger.info("POST request made for images API.");
     return res.status(StatusCodes.OK).send({
       message: "successful",
-      image_url: savedImage.image_url,
+      image: savedImage,
     });
   });
 

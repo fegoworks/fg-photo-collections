@@ -5,9 +5,12 @@ export class Images extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 500 })
   image_url!: string;
 
-  @Column()
+  @Column({ length: 300, nullable: true })
+  image_caption!: string;
+
+  @Column({ type: "timestamptz", default: () => "CURRENT_TIMESTAMP" })
   created_at!: Date;
 }

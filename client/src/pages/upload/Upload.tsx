@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useMemo } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { uploadImage } from "../../helpers";
 import { UploadImageArgs } from "../../api/imageApi";
 import { Card, Form, FormConfig, Message } from "../../components";
@@ -45,7 +45,9 @@ const Upload: FunctionComponent = () => {
   }, [errors, isSuccessful, isUploading]);
 
   if (isSuccessful) {
-    return <Message title="Upload" description={messageStr} />;
+    return (
+      <Message title="Yayyy! 🥳" description={messageStr} showHomeBtn={true} />
+    );
   }
 
   return (

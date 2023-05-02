@@ -9,6 +9,7 @@ export interface ImageState {
   errors: any;
   isUploading: boolean;
   isSuccessful: boolean;
+  isImagesLoading: boolean;
 }
 
 export const store: ToolkitStore = configureStore({

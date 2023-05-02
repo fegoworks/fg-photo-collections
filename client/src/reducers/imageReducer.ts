@@ -7,6 +7,7 @@ const initialState: ImageState = {
   errors: [],
   isUploading: false,
   isSuccessful: false,
+  isImagesLoading: false,
 };
 
 const ReducerActions = {
@@ -15,6 +16,10 @@ const ReducerActions = {
     action: PayloadAction<Image[]>
   ) => {
     state.images = [...action.payload];
+    state.isImagesLoading = false;
+  },
+  setImagesLoading: <T extends ImageState>(state: T) => {
+    state.isImagesLoading = true;
   },
   setUploadingImage: <T extends ImageState>(
     state: T,
@@ -56,6 +61,7 @@ export const {
   setUploadSuccessful,
   setUploadUnsuccessful,
   setUploadingImage,
+  setImagesLoading,
   resetState,
 } = imageSlice.actions;
 

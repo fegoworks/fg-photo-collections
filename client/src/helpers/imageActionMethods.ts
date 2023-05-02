@@ -2,6 +2,7 @@ import { AnyAction, Dispatch } from "redux";
 import imageApi, { UploadImageArgs } from "../api/imageApi";
 import {
   setImages,
+  setImagesLoading,
   setUploadingImage,
   setUploadSuccessful,
   setUploadUnsuccessful,
@@ -25,6 +26,7 @@ export const uploadImage = (
 };
 
 export const fetchImages = (dispactch: Dispatch<AnyAction>) => {
+  dispactch(setImagesLoading());
   return imageApi.fetchImages().then((data) => {
     dispactch(setImages(data));
     return { data };

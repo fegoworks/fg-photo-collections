@@ -33,10 +33,11 @@ This is a backend typescript application built with [**Node JS**](https://nodejs
 
 2. Clone the [**repository here**](https://github.com/fegoworks/fg-photo-collections)
 3. [**cd**] into the root of the **project directory**.
-4. Run `yarn install` on the terminal to install project dependecies
-5. Create a `.env` file in the root directory of the application. Example of the content of a `.env` file is shown in the `.env.sample`
+4.  [**cd**] into the `/api` folder.
+5. Run `yarn install` on the terminal to install project dependecies
+6. Create a `.env` file in the root directory of the application. Example of the content of a `.env` file is shown in the `.env.sample`
 
-6. Start the application:
+7. Start the application:
 
 ```
 yarn start

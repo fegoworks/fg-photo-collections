@@ -8,22 +8,29 @@ import { resetState } from "../../reducers/imageReducer";
 interface MessageArgs {
   description: string;
   title: string;
+  showHomeBtn?: boolean;
 }
-const Message: FunctionComponent<MessageArgs> = ({ description, title }) => {
+const Message: FunctionComponent<MessageArgs> = ({
+  description,
+  title,
+  showHomeBtn,
+}) => {
   const dispatch = useAppDispatch();
   return (
     <Card className="Message">
       <>
         <h2>{title}</h2>
         <p>{description}</p>
-        <div className="btn-container">
-          <Button
-            text="Go home"
-            to={"/"}
-            type="link"
-            onClick={() => dispatch(resetState(false))}
-          />
-        </div>
+        {showHomeBtn && (
+          <div className="btn-container">
+            <Button
+              text="Go home"
+              to={"/"}
+              type="link"
+              onClick={() => dispatch(resetState(false))}
+            />
+          </div>
+        )}
       </>
     </Card>
   );

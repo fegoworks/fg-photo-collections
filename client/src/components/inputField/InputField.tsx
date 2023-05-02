@@ -10,6 +10,7 @@ interface InputFieldProps {
   touched?: boolean;
   type?: string;
   value?: string;
+  accept?: string;
 }
 
 const InputField: FunctionComponent<InputFieldProps> = ({
@@ -21,11 +22,13 @@ const InputField: FunctionComponent<InputFieldProps> = ({
   touched,
   type = "text",
   value,
+  accept,
 }) => {
   return (
     <div className="InputField">
       <label htmlFor={name}>{label}</label>
       <input
+        accept={accept}
         id={name}
         name={name}
         onBlur={onBlur}

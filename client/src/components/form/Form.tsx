@@ -45,7 +45,9 @@ const Form: FunctionComponent<FormProps> = ({
           error={formik.errors[name]}
           onBlur={formik.handleBlur}
           {...(type === "file"
-            ? {}
+            ? {
+                accept: "image/*",
+              }
             : {
                 value: formik.values[name],
               })}

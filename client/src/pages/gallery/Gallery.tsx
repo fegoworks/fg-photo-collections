@@ -1,19 +1,15 @@
 import "./Gallery.css";
 
-import { FunctionComponent, useMemo, useState } from "react";
-import { Card, ImageModal, Loader, Message } from "../../components";
+import { FunctionComponent, useMemo } from "react";
+import { GalleryItem, LoadingSkeleton, Message } from "../../components";
 import { ImageState, useAppSelector } from "../../store";
 
-export interface GalleryArgs {
-  image_url: string;
-  image_caption?: string;
-}
+const SKELETON_COLUMNS_COUNT = 14;
+
 const Gallery: FunctionComponent = () => {
   const { images, isImagesLoading } = useAppSelector(
     (state: { images: ImageState }) => state.images
   );
-
-  const [selectedImage, setSelectedImage] = useState<GalleryArgs | null>(null);
 
   const orderedImages = useMemo(() => {
     return [...images].sort(
@@ -22,45 +18,31 @@ const Gallery: FunctionComponent = () => {
     );
   }, [images]);
 
+  if (isImagesLoading) {
+    return (
+      <div className="Gallery">
+        {[...Array(SKELETON_COLUMNS_COUNT)].map(() => (
+          <LoadingSkeleton />
+        ))}
+      </div>
+    );
+  }
+
+  if (!orderedImages.length || orderedImages.length === 0) {
+    return (
+      <Message
+        title="Oops❗️"
+        description="It looks like there are no uploaded images at this time"
+      />
+    );
+  }
+
   return (
-    <>
-      {isImagesLoading ? (
-        <Loader />
-      ) : orderedImages.length ? (
-        <div className="Gallery">
-          {orderedImages.map((image) => (
-            <Card key={image.id} className={`image-container `}>
-              <div className="image-item">
-                <div className="image">
-                  <img
-                    src={image.image_url}
-                    alt={
-                      image?.image_caption
-                        ? image.image_caption.toLocaleLowerCase()
-                        : "image"
-                    }
-                    onClick={() => setSelectedImage(image)}></img>
-                </div>
-                <div className="image-caption">
-                  {image?.image_caption || "Image"}
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <Message
-          title="Oops❗️"
-          description="It looks like there are no uploaded images at this time"
-        />
-      )}
-      {selectedImage && (
-        <ImageModal
-          selectedImage={selectedImage}
-          closeModal={() => setSelectedImage(null)}
-        />
-      )}
-    </>
+    <div className="Gallery">
+      {orderedImages.map((image) => (
+        <GalleryItem key={image.id} image={image} />
+      ))}
+    </div>
   );
 };
 

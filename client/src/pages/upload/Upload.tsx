@@ -1,3 +1,4 @@
+import './Upload.css'
 import { FunctionComponent, useMemo } from "react";
 import { uploadImage } from "../../helpers";
 import { UploadImageArgs } from "../../api/imageApi";

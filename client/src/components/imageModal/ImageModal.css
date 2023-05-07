@@ -3,5 +3,11 @@
   max-width: 800px;
   max-height: 500px;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 50% 70%;
+}
+
+@media (max-width: 800px) {
+  .ImageModal img {
+    height: auto;
+  }
 }

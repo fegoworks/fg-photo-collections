@@ -11,16 +11,28 @@
 h1 {
   color: #ccc;
   cursor: pointer;
+  margin: 0;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  background-color: #242424;
   align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  padding: 2rem 0;
 }
 
 @media (prefers-color-scheme: light) {
   nav {
     color: #666;
+  }
+}
+
+@media (max-width: 800px) {
+  nav h1 {
+    font-size: xx-large;
   }
 }

@@ -1,5 +1,6 @@
 .Message {
   width: 600px;
+  padding: 2em;
 }
 
 .Message .btn-container {

@@ -2,13 +2,13 @@ import "./ImageModal.css";
 
 import { FunctionComponent } from "react";
 import { Modal } from "..";
-import { GalleryArgs } from "../../pages/gallery/Gallery";
+import { Image } from "../../models";
 
-interface ImageModalArgs {
-  selectedImage: GalleryArgs;
+interface ImageModalProps {
+  selectedImage: Image;
   closeModal: () => void;
 }
-const ImageModal: FunctionComponent<ImageModalArgs> = ({
+const ImageModal: FunctionComponent<ImageModalProps> = ({
   selectedImage,
   closeModal,
 }) => {

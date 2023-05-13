@@ -70,7 +70,6 @@ yarn start
 - Sample success response with status 200
   ```
   {
-    message: "successful",
     image: {
       id: 1,
       image_url: "https://cloudinary.com/somerandomgeneratedlink",
@@ -87,7 +86,6 @@ yarn start
 
   ```
   {
-    status: "successful",
     images: [{
       id: 1,
       image_url: "https://cloudinary.com/somerandomgeneratedlink",
